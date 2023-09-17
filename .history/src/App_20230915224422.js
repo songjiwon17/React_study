@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Board from "./Board";
 import Button from "./Button";
-import './App.css';
 
 function random(n){
     return Math.ceil(Math.random() * n);
@@ -18,19 +17,23 @@ function App(){
         setOtherHistory([...otherHistory, nextOtherNum]);
     }
     const handleClearClick = () =>{
-        setMyHistory([]);
-        setOtherHistory([]);
+        setNum(1);
+        setSum(0);
+        setGameHistory([]);
+        setOtherNum(1);
+        setOtherSum(0);
+        setOtherGameHistory([]);
     }
 
     return(
-        <div className="App">
+        <div>
             <div>
-                <Button className="App-button" color='blue' onClick={handleRollClick}>던지기</Button>
-                <Button className="App-button" color='red' onClick={handleClearClick}>처음부터</Button>
+                <Button onClick={handleRollClick}>던지기</Button>
+                <Button onClick={handleClearClick}>처음부터</Button>
             </div>
             <div>
-                <Board name="나" color="blue" gameHistory={myHistory}/>
-                <Board name="상대" color="red" gameHistory={otherHistory} />
+                <Board name="나" color="blue" num={num} sum={sum} gameHistory={gameHistory}/>
+                <Board name="상대" color="red" num={otherNum} sum={otherSum} gameHistory={otherGameHistory} />
             </div>
         </div>
     )
